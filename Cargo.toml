@@ -1,0 +1,15 @@
+[package]
+name = "github-local-remote"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yoshuawuyts/github-local-remote"
+documentation = "https://docs.rs/github-local-remote"
+description = "Find the GitHub url, repo and username for a local directory"
+authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>"]
+readme = "README.md"
+
+[dependencies]
+failure = "0.1.2"
+git2 = "0.7.5"
+
+[dev-dependencies]
