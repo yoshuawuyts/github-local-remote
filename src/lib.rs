@@ -53,11 +53,11 @@ pub fn stat(path: impl AsRef<Path>) -> ::Result<Remote> {
 
   let parts: Vec<&str> = url.split(":").collect();
   let repo_username = parts.get(1).ok_or(::ErrorKind::GitHubUrl)?;
+  let repo_username = repo_username.replace(".git", "");
 
   let parts: Vec<&str> = repo_username.split("/").collect();
   let user = parts.get(0).ok_or(::ErrorKind::GitHubUrl)?;
   let repo = parts.get(1).ok_or(::ErrorKind::GitHubUrl)?;
-  let repo = repo.replace(".git", "");
 
   Ok(Remote {
     url: format!("https://github.com/{}", repo_username),
