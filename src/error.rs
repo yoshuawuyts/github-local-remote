@@ -37,6 +37,11 @@ pub enum ErrorKind {
   /// The Git remote URL was not found.
   #[fail(display = "The remote 'origin' does not have a url set.")]
   GitRemoteUrl,
+  /// The Git remote URL was not a valid GitHub url
+  #[fail(
+    display = "The git url for remote 'origin' is not a valid GitHub url."
+  )]
+  GitHubUrl,
   /// An error caused by an IO failure.
   #[fail(display = "{}", _0)]
   Io(#[cause] io::Error),

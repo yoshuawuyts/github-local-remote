@@ -50,6 +50,18 @@ pub fn stat(path: impl AsRef<Path>) -> ::Result<Remote> {
     .find_remote("origin")
     .context(::ErrorKind::GitRemoteOrigin)?;
   let url = remote.url().ok_or(::ErrorKind::GitRemoteUrl)?;
-  println!("url {:?}", url);
-  unimplemented!();
+
+  let parts: Vec<&str> = url.split(":").collect();
+  let repo_username = parts.get(1).ok_or(::ErrorKind::GitHubUrl)?;
+
+  let parts: Vec<&str> = repo_username.split("/").collect();
+  let user = parts.get(0).ok_or(::ErrorKind::GitHubUrl)?;
+  let repo = parts.get(1).ok_or(::ErrorKind::GitHubUrl)?;
+  let repo = repo.replace(".git", "");
+
+  Ok(Remote {
+    url: format!("https://github.com/{}", repo_username),
+    repo: repo.to_string(),
+    user: user.to_string(),
+  })
 }
