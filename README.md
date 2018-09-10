@@ -9,7 +9,7 @@ Find the GitHub url, repo and username for a local directory.
 - [Releases][9]
 
 ## Usage
-```rs
+```rust
 extern crate github_local_remote;
 
 fn main() {
